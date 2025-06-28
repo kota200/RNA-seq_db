@@ -20,7 +20,7 @@ cut -f1 tmp_list | sort | uniq > SRR_list_tmp
 if [ ! -f ${out}_TPM_matrix.csv ]; then
     touch ${out}_TPM_matrix.csv
     echo "File ${out}_TPM_matrix.csv doesn't exit. Making a new one..."
-    mapping_script.sh tmp_list ${organism_name} ${ref} ${gff}
+    mapping_script.sh tmp_list ${out} ${ref} ${gff}
 else
     echo "Updating the file ${out}_TPM_matrix.csv"
     head -n1 ${out}_TPM_matrix.csv | cut -f2- -d "," | sed "s/;/\n/g" | grep SRR | sort | uniq > SRR_list
@@ -28,7 +28,7 @@ else
       then echo "Files are up to date. Nothing to do."; mv SRR_list_tmp SRR_list
       else echo "Files are different"; diff SRR_list SRR_list_tmp > SRR_diff_list;  grep SRR SRR_diff_list | cut -f2 -d " " > SRR_diff_mod; mv SRR_diff_mod SRR_diff_list
         for i in `cat SRR_diff_list`; do grep -w ${i} tmp_list >> diff_list; done
-        mapping_script.sh diff_list; mv SRR_list_tmp SRR_list
+        mapping_script.sh diff_list ${out} ${ref} ${gff}; mv SRR_list_tmp SRR_list
     fi
 fi
 
