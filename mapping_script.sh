@@ -56,7 +56,7 @@ samtools sort -O BAM ${name}.sam -o ${name}.bam -@ 15
 samtools index ${name}.bam; rm ${name}.sam
 rm ${srr}_1.fastq
 rm ${srr}_2.fastq
-featureCounts -p -T 20 -t mRNA -g ID -a ${gff} -o ${name}_counts.txt ${name}.bam
+featureCounts -M -p -T 20 -t mRNA -g ID -a ${gff} -o ${name}_counts.txt ${name}.bam
 
 #Single-end
 elif [ "${lib}" = "SINGLE" ]; then
@@ -66,7 +66,7 @@ elif [ "${lib}" = "SINGLE" ]; then
   samtools sort -O BAM ${name}.sam -o ${name}.bam -@ 15
   samtools index ${name}.bam; rm ${name}.sam
   rm ${srr}.fastq
-  featureCounts -T 20 -t mRNA -g ID -a ${gff} -o ${name}_counts.txt ${name}.bam
+  featureCounts -M -T 20 -t mRNA -g ID -a ${gff} -o ${name}_counts.txt ${name}.bam
 else
   break
 fi
