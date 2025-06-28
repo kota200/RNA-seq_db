@@ -1,12 +1,13 @@
 diff=${1:?}
 uniq ${diff} | sed "s/,/_/g" | sed "s/\t/,/g" | sed "s/ /_/g" > diff_tmp
 
-#Reference genome file, fasta
-ref=${2:?}
-#Annotation file, gff3
-gff=${3:?}
 #output file prefix
-out=${4:?}
+out=${2:?}
+#Reference genome file, fasta
+ref=${3:?}
+#Annotation file, gff3
+gff=${4:?}
+
 
 for i in `cat diff_tmp`
 do srr=`echo ${i} | awk -F"," '{print $1}'` 
