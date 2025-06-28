@@ -1,5 +1,6 @@
-#$1: organism name
-python API_PM_transcriptome.py $1
+organism_name=${1}
+
+python API_PM_transcriptome.py ${organism_name}
 
 grep -e "Runs" -e "ExpXml" tmp  | sed -z 's/\n<Item Name="Runs" Type="String">//g' | grep -e "Cenchrus americanus" -e "Pennisetum" > tmp_2
 sed "s/.*Run acc=//g" tmp_2 | cut -f2 -d '"' > SRR_list_tmp
