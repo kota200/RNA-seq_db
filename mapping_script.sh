@@ -52,8 +52,8 @@ hisat2-build ${ref} ref.idx
 if [ "${lib}" = "PAIRED" ]; then
 fasterq-dump --split-files -p ${srr} -e 12
 fastp -i ${srr}_1.fastq -I ${srr}_2.fastq -o ${name}_R1.fastq -O ${name}_R2.fastq
-hisat2 -x ref.idx -1 ${name}_R1.fastq -2 ${name}_R2.fastq -p 15 -S ${name}.sam
-samtools sort -O BAM ${name}.sam -o ${name}.bam -@ 15
+hisat2 -x ref.idx -1 ${name}_R1.fastq -2 ${name}_R2.fastq -p 16 -S ${name}.sam
+samtools sort -O BAM ${name}.sam -o ${name}.bam -@ 16
 samtools index ${name}.bam; rm ${name}.sam
 rm ${srr}_1.fastq
 rm ${srr}_2.fastq
@@ -63,8 +63,8 @@ featureCounts -M -p -T 20 -t mRNA -g ID -a ${gff} -o ${name}_counts.txt ${name}.
 elif [ "${lib}" = "SINGLE" ]; then
   fasterq-dump -p ${srr} -e 12
   fastp -i ${srr}.fastq -o ${name}_R.fastq 
-  hisat2 -x ref.idx -U ${name}_R.fastq -S ${name}.sam
-  samtools sort -O BAM ${name}.sam -o ${name}.bam -@ 15
+  hisat2 -x ref.idx -U ${name}_R.fastq -S ${name}.sam -p 16
+  samtools sort -O BAM ${name}.sam -o ${name}.bam -@ 16
   samtools index ${name}.bam; rm ${name}.sam
   rm ${srr}.fastq
   featureCounts -M -T 20 -t mRNA -g ID -a ${gff} -o ${name}_counts.txt ${name}.bam
