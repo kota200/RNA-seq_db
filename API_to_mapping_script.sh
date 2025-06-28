@@ -2,7 +2,7 @@ organism_name=${1}
 
 python API_PM_transcriptome.py ${organism_name}
 
-grep -e "Runs" -e "ExpXml" tmp  | sed -z 's/\n<Item Name="Runs" Type="String">//g' | grep -e "Cenchrus americanus" -e "Pennisetum" > tmp_2
+grep -e "Runs" -e "ExpXml" tmp  | sed -z 's/\n<Item Name="Runs" Type="String">//g' | grep -e ${organism_name} > tmp_2
 sed "s/.*Run acc=//g" tmp_2 | cut -f2 -d '"' > SRR_list_tmp
 sed "s/.*;Biosample&gt;//g" tmp_2 | cut -f1 -d "&" > biosample_list_tmp
 sed "s/.*;Bioproject&gt;//g" tmp_2 | cut -f1 -d "&" >PRJNA_list_tmp
