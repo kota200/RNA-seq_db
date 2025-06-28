@@ -1,7 +1,7 @@
 # RNA-seq_db
 
 This is a program to make an RNA-seq database on a specific organism.
-This program requires Python, HISAT2, SAMtools and featureCounts.
+This program requires Python3 (https://www.python.org/), HISAT2 (https://daehwankimlab.github.io/hisat2/), SAMtools (https://www.htslib.org/) and featureCounts (https://subread.sourceforge.net/featureCounts.html).
 
 Usage
 ````
