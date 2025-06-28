@@ -4,7 +4,7 @@ out=${2:?}
 ref=${3:?}
 gff=${4:?}
 
-python API_PM_transcriptome.py ${organism_name}
+python API_RNA-seq.py ${organism_name}
 
 grep -e "Runs" -e "ExpXml" tmp  | sed -z 's/\n<Item Name="Runs" Type="String">//g' | grep -e ${organism_name} > tmp_2
 sed "s/.*Run acc=//g" tmp_2 | cut -f2 -d '"' > SRR_list_tmp
