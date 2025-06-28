@@ -1,10 +1,13 @@
 import urllib.request
 from bs4 import BeautifulSoup
 from xml.etree.ElementTree import Element, SubElement, ElementTree
-
-search_term = ("Cenchrus+americanus[Organism]+OR+pearl+millet[All+Fields])+AND+RNA-seq[All+Fields]")
+import sys
+    
+name=sys.argv[1]
+search_term = f'{name}[Organism] AND (RNA-seq[All Fields] AND transcriptome[All Fields])'
+encoded_term = quote(search_term)
 base='https://eutils.ncbi.nlm.nih.gov/entrez/eutils/'
-query_url=base+"esearch.fcgi?db=sra&term={}&usehistory=y".format(search_term)
+query_url=base+"esearch.fcgi?db=sra&term={}&usehistory=y".format(encoded_term)
 
 data = urllib.request.urlopen(query_url)
 xml=data.read()
