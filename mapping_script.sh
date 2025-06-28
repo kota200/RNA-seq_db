@@ -78,7 +78,6 @@ cut -f2 ${name}_counts_tmp.txt_with_TPM | sed "s/\.bamTPM//g"  > ${name}_counts_
 
 sed -i "s|${name}|${name};${bio};${srr};${samn};cultivar: ${cult};genotype: ${geno};development_stage: ${dev_sta};tissue: ${tissue}|g" ${name}_counts_tmp_final
 
-#CSVファイルへ結合
 if [ ! -f ${out}_TPM_matrix.csv ]; then
     touch ${out}_TPM_matrix.csv
     echo "File ${out}_TPM_matrix.csv doesn't exit. Making a new one..."
