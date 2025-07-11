@@ -4,7 +4,7 @@ from xml.etree.ElementTree import Element, SubElement, ElementTree
 import sys
     
 name=sys.argv[1]
-search_term = f'{name}[Organism] AND (RNA-seq[All Fields] AND transcriptome[All Fields])'
+search_term = ("(name[Organism]) AND (RNA-seq[All Fields] OR transcriptome[All Fields])")
 encoded_term = quote(search_term)
 base='https://eutils.ncbi.nlm.nih.gov/entrez/eutils/'
 query_url=base+"esearch.fcgi?db=sra&term={}&usehistory=y".format(encoded_term)
